@@ -1,0 +1,3 @@
+cherry-pick.0.4.11-32-g9d127ce.update-filetype-reported-by-libmagic-5-23-for-keep-going-true.patch
+libmagic-compat.patch
+disable-gzip-test.patch

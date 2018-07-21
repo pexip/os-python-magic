@@ -1,0 +1,4 @@
+
+version=3
+https://github.com/ahupp/python-magic/releases \
+    /ahupp/python-magic/archive/([0-9][.0-9]*)\.tar\.gz

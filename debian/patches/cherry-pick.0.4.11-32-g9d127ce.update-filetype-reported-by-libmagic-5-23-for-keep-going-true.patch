@@ -1,0 +1,16 @@
+Subject: Update filetype reported by libmagic >=5.23 for keep_going=true
+Origin: 0.4.11-32-g9d127ce
+Upstream-Author: Adam Hupp <adam@hupp.org>
+Date: Sun Oct 1 20:52:48 2017 -0700
+
+--- a/test/test.py
++++ b/test/test.py
+@@ -94,7 +94,7 @@
+         self.assertEqual(m.from_file(filename), 'image/jpeg')
+         
+         m = magic.Magic(mime=True, keep_going=True)
+-        self.assertEqual(m.from_file(filename), 'image/jpeg')
++        self.assertEqual(m.from_file(filename), 'image/jpeg\\012- application/octet-stream')
+ 
+ 
+     def test_rethrow(self):
