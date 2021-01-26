@@ -1,40 +1,23 @@
 Source: python-magic
 Maintainer: Christoph Biedl <debian.axhn@manchmal.in-ulm.de>
 Homepage: https://github.com/ahupp/python-magic/
-Standards-Version: 4.1.5
+Standards-Version: 4.5.1
 Vcs-Browser: https://git.in-ulm.de/cbiedl/python-magic
 Vcs-Git: https://git.in-ulm.de/cbiedl/python-magic.git
 Testsuite: autopkgtest-pkg-python
-Build-Depends: debhelper (>= 11~),
+Build-Depends: debhelper-compat (= 13),
     dh-python,
-    python-all,
-    python-setuptools,
+    libmagic1 (>= 1:5.39),
     python3-all,
     python3-setuptools,
 Priority: extra
+Rules-Requires-Root: no
 Section: libs
-
-Package: python-magic
-Architecture: all
-Depends: ${misc:Depends}, ${python:Depends},
-    libmagic1,
-Provides:
-    ${python:Provides},
-Section: python
-Priority: optional
-Description: python2 interface to the libmagic file type identification library
- python-magic is a Python interface to the libmagic file type
- identification library. libmagic identifies file types by checking
- their headers according to a predefined list of file types. This
- functionality is exposed to the command line by the Unix command file.
- .
- This package provides the Python 2 version of the python-magic module.
-XB-Python-Version: ${python:Versions}
 
 Package: python3-magic
 Architecture: all
 Depends: ${misc:Depends}, ${python3:Depends},
-    libmagic1,
+    libmagic1 (>= 1:5.39),
 Section: python
 Priority: optional
 Description: python3 interface to the libmagic file type identification library

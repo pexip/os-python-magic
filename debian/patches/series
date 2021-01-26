@@ -1,3 +1,6 @@
-cherry-pick.0.4.11-32-g9d127ce.update-filetype-reported-by-libmagic-5-23-for-keep-going-true.patch
-libmagic-compat.patch
-disable-gzip-test.patch
+# cherry-picked from upstream. Keep in chronological order
+
+# patches that should go upstream
+
+# modifications for Debian
+debian/2021-01-16.locale-in-tests.patch

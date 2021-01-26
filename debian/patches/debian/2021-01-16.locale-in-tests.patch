@@ -1,0 +1,27 @@
+Subject: Adjust locale check in test suite
+Author: Christoph Biedl <debian.axhn@manchmal.in-ulm.de> 
+Date: 2021-01-16
+Forwarded: no
+
+    Upstream wishes to run the test suite with LC_ALL set to
+    en_US.UTF-8 which is not available during build by default.
+
+    Instead of adding a build dependeny on locales-all and poking
+    some environment variables, just change this to C.UTF-8 which
+    does the trick as well, without additional cost.
+
+--- a/test/test.py
++++ b/test/test.py
+@@ -3,10 +3,10 @@
+ # for output which reports a local time
+ os.environ['TZ'] = 'GMT'
+ 
+-if os.environ.get('LC_ALL', '') != 'en_US.UTF-8':
++if os.environ.get('LC_ALL', '') != 'C.UTF-8':
+     # this ensure we're in a utf-8 default filesystem encoding which is
+     # necessary for some tests
+-    raise Exception("must run `export LC_ALL=en_US.UTF-8` before running test suite")
++    raise Exception("must run `export LC_ALL=C.UTF-8` before running test suite")
+ 
+ import shutil
+ import os.path

@@ -1,3 +1,43 @@
+python-magic (2:0.4.20-3) unstable; urgency=medium
+
+  * Fix autopkgtest
+
+ -- Christoph Biedl <debian.axhn@manchmal.in-ulm.de>  Tue, 26 Jan 2021 08:25:41 +0100
+
+python-magic (2:0.4.20-2) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Christoph Biedl <debian.axhn@manchmal.in-ulm.de>  Sun, 24 Jan 2021 23:05:53 +0100
+
+python-magic (2:0.4.20-1) experimental; urgency=medium
+
+  * Upload to experimental
+  * New upstream version 0.4.20
+    The compatability layer for python-magic from src:file is now part
+    of the upstream releases.
+
+ -- Christoph Biedl <debian.axhn@manchmal.in-ulm.de>  Sat, 16 Jan 2021 10:29:10 +0100
+
+python-magic (2:0.4.15-5) unstable; urgency=medium
+
+  * Adjust test suite for changes in file 5.39. Closes: #975784
+
+ -- Christoph Biedl <debian.axhn@manchmal.in-ulm.de>  Thu, 26 Nov 2020 22:20:06 +0100
+
+python-magic (2:0.4.15-4) unstable; urgency=medium
+
+  * Drop python 2 support. Closes: #937905
+
+ -- Christoph Biedl <debian.axhn@manchmal.in-ulm.de>  Sun, 19 Apr 2020 10:03:42 +0200
+
+python-magic (2:0.4.15-3) unstable; urgency=low
+
+  * Cherry-pick upstream commit to fix warning on Python 3.8.
+    (Ubuntu 1857148)
+
+ -- Christoph Biedl <debian.axhn@manchmal.in-ulm.de>  Fri, 27 Dec 2019 14:20:39 +0100
+
 python-magic (2:0.4.15-2) unstable; urgency=high
 
   * Disable gzip test. Closes: #897471
