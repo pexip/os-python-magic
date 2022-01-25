@@ -1,0 +1,26 @@
+language: python
+
+# needed to use trusty
+sudo: required
+
+dist: xenial
+
+python:
+  - "2.6"
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "nightly"
+
+install:
+  - pip install coverage
+  - python setup.py install
+
+script:
+  - coverage run setup.py test
+
+after_success:
+  - pip install coveralls && coveralls
+  - pip install codecov && codecov
