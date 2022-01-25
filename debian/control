@@ -1,5 +1,6 @@
 Source: python-magic
-Maintainer: Christoph Biedl <debian.axhn@manchmal.in-ulm.de>
+Maintainer: Pexip AS <packaging@pexip.com>
+XSBC-Pexip-Original-Maintainer: Christoph Biedl <debian.axhn@manchmal.in-ulm.de>
 Homepage: https://github.com/ahupp/python-magic/
 Standards-Version: 4.1.5
 Vcs-Browser: https://git.in-ulm.de/cbiedl/python-magic
@@ -13,6 +14,7 @@ Build-Depends: debhelper (>= 11~),
     python3-setuptools,
 Priority: extra
 Section: libs
+XS-Pexip-Upstream: http://ftp.debian.org/debian/ buster
 
 Package: python-magic
 Architecture: all
