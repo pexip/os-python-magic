@@ -14,7 +14,7 @@ Build-Depends: debhelper (>= 11~),
     python3-setuptools,
 Priority: extra
 Section: libs
-XS-Pexip-Upstream: http://ftp.debian.org/debian/ buster
+XS-Pexip-Upstream: http://deb.debian.org/debian/ bullseye
 
 Package: python-magic
 Architecture: all
