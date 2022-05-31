@@ -1,26 +1,22 @@
 language: python
-
-# needed to use trusty
-sudo: required
-
 dist: xenial
+cache: pip
 
 python:
-  - "2.6"
   - "2.7"
-  - "3.3"
-  - "3.4"
   - "3.5"
   - "3.6"
-  - "nightly"
+  - "3.7"
+  - "3.8"
+  - "3.9"
 
 install:
-  - pip install coverage
-  - python setup.py install
+  - pip install coverage coveralls codecov
+  - pip install .
 
 script:
-  - coverage run setup.py test
+  - LC_ALL=en_US.UTF-8 coverage run -m unittest test
 
 after_success:
-  - pip install coveralls && coveralls
-  - pip install codecov && codecov
+  - coveralls
+  - codecov
