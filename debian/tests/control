@@ -1,0 +1,4 @@
+Tests: run-testsuite
+Depends: @,
+Restrictions:
+    allow-stderr,
