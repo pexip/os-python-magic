@@ -1,6 +1,31 @@
+Changes to 0.4.26:
+  - Use tox for all multi-version testing
+  - Fix use of pytest, use it via tox
+
+Changes to 0.4.25:
+  - Support os.PathLike values in Magic.from_file and magic.from_file
+  - Handle some versions of libmagic that return mime string without charset
+  - Fix tests for file 5.41
+  - Include typing stub in package
+
+Changes to 0.4.24:
+ - Fix regression in library loading on some Alpine docker images.
+
+Changes to 0.4.23
+
+ - Include a `py.typed` sentinal to enable type checking
+ - Improve fix for attribute error during destruction
+ - Cleanup library loading logic
+ - Add new homebrew library dir for OSX
+
+Changes to 0.4.21, 0.4.22
+
+ - Unify dll loader between the standard and compat library, fixing load
+ failures on some previously supported platforms.
+
 Changes to 0.4.20
 
-- merge in a compatability layer for the upstream libmagic python binding.
+- merge in a compatibility layer for the upstream libmagic python binding.
   Since both this package and that one are called 'magic', this compat layer
   removes a very common source of runtime errors.  Use of that libmagic API will
   produce a deprecation warning.

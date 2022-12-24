@@ -1,0 +1,16 @@
+Subject: Adjust tox.ini for Debian's python3-coverage
+Author: Christoph Biedl <debian.axhn@manchmal.in-ulm.de>
+Date: 2022-06-05
+Forwarded: not-needed
+
+--- a/tox.ini
++++ b/tox.ini
+@@ -12,7 +12,7 @@
+ 
+ [testenv]
+ commands =
+-    coverage run -m pytest 
++    python3-coverage run -m pytest
+ 
+ setenv =
+   COVERAGE_FILE=.coverage.{envname}

@@ -19,7 +19,7 @@ import sys
 SKIP_FROM_DESCRIPTOR = bool(os.environ.get('SKIP_FROM_DESCRIPTOR'))
 
 class MagicTest(unittest.TestCase):
-    TESTDATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'testdata')
+    TESTDATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'testdata'))
 
     def test_version(self):
         try:
@@ -90,7 +90,7 @@ class MagicTest(unittest.TestCase):
         try:
             m = magic.Magic(mime=True)
             self.assert_values(m, {
-                'magic._pyc_': ('application/octet-stream', 'text/x-bytecode.python'),
+                'magic._pyc_': ('application/octet-stream', 'text/x-bytecode.python', 'application/x-bytecode.python'),
                 'test.pdf': 'application/pdf',
                 'test.gz': ('application/gzip', 'application/x-gzip'),
                 'test.snappy.parquet': 'application/octet-stream',
@@ -107,7 +107,8 @@ class MagicTest(unittest.TestCase):
         try:
             self.assert_values(m, {
                 'magic._pyc_': 'python 2.4 byte-compiled',
-                'test.pdf': 'PDF document, version 1.2',
+                'test.pdf': ('PDF document, version 1.2',
+                             'PDF document, version 1.2, 2 pages'),
                 'test.gz':
                     ('gzip compressed data, was "test", from Unix, last '
                      'modified: Sun Jun 29 01:32:52 2008',
@@ -217,6 +218,14 @@ class MagicTest(unittest.TestCase):
         m = magic.Magic()
         with open(os.path.join(self.TESTDATA_DIR, 'name_use.jpg'), 'rb') as f:
             m.from_buffer(f.read())
+
+    def test_pathlike(self):
+        if sys.version_info < (3, 6):
+            return
+        from pathlib import Path
+        path  = Path(self.TESTDATA_DIR, "test.pdf")
+        m = magic.Magic(mime=True)
+        self.assertEqual('application/pdf', m.from_file(path))
 
 
 if __name__ == '__main__':

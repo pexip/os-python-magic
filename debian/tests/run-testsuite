@@ -2,5 +2,5 @@
 
 set -e
 
-export LC_ALL=C.UTF-8
-python3 test/test.py
+export LC_ALL=en_US.UTF-8
+python3 test/python_magic_test.py

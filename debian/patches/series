@@ -1,6 +1,7 @@
 # cherry-picked from upstream. Keep in chronological order
 
 # patches that should go upstream
+2022-12-23.adjust-for-5.43.patch
 
 # modifications for Debian
-debian/2021-01-16.locale-in-tests.patch
+2022-06-05.adjust-tox.patch

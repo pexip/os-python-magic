@@ -1,7 +1,7 @@
 Source: python-magic
 Maintainer: Christoph Biedl <debian.axhn@manchmal.in-ulm.de>
 Homepage: https://github.com/ahupp/python-magic/
-Standards-Version: 4.5.1
+Standards-Version: 4.6.0
 Vcs-Browser: https://git.in-ulm.de/cbiedl/python-magic
 Vcs-Git: https://git.in-ulm.de/cbiedl/python-magic.git
 Testsuite: autopkgtest-pkg-python
@@ -9,7 +9,10 @@ Build-Depends: debhelper-compat (= 13),
     dh-python,
     libmagic1 (>= 1:5.39),
     python3-all,
+    python3-coverage,
+    python3-pytest,
     python3-setuptools,
+    tox,
 Priority: extra
 Rules-Requires-Root: no
 Section: libs

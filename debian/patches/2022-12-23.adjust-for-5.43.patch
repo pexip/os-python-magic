@@ -1,0 +1,16 @@
+Subject: Adjust for changes in file 5.43+
+Author: Christoph Biedl <debian.axhn@manchmal.in-ulm.de>
+Date: 2022-12-23
+Forwarded: https://github.com/ahupp/python-magic/issues/283
+
+--- a/test/python_magic_test.py
++++ b/test/python_magic_test.py
+@@ -134,7 +134,7 @@
+             self.assert_values(m, {
+                 # some versions return '' for the extensions of a gz file,
+                 # including w/ the command line.  Who knows...
+-                'test.gz': ('gz/tgz/tpz/zabw/svgz', '', '???'),
++                'test.gz': ('gz/tgz/tpz/zabw/svgz/adz/kmy/xcfgz', 'gz/tgz/tpz/zabw/svgz', '', '???'),
+                 'name_use.jpg': 'jpeg/jpg/jpe/jfif',
+             })
+         except NotImplementedError:
