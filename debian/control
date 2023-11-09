@@ -14,7 +14,7 @@ Build-Depends: debhelper-compat (= 13),
 Priority: extra
 Rules-Requires-Root: no
 Section: libs
-XS-Pexip-Upstream: http://deb.debian.org/debian/ bullseye
+XS-Pexip-Upstream: http://deb.debian.org/debian/ bookworm
 
 Package: python3-magic
 Architecture: all
