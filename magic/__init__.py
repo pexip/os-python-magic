@@ -53,8 +53,6 @@ class Magic:
         raw - Do not try to decode "non-printable" chars.
         extension - Print a slash-separated list of valid extensions for the file type found.
         """
-
-        self.cookie = None
         self.flags = MAGIC_NONE
         if mime:
             self.flags |= MAGIC_MIME_TYPE
@@ -102,6 +100,7 @@ class Magic:
                 # if we're on python3, convert buf to bytes
                 # otherwise this string is passed as wchar*
                 # which is not what libmagic expects
+                # NEXTBREAK: only take bytes
                 if type(buf) == str and str != bytes:
                     buf = buf.encode('utf-8', errors='replace')
                 return maybe_decode(magic_buffer(self.cookie, buf))
@@ -152,7 +151,7 @@ class Magic:
         # incorrect fix for a threading problem, however I'm leaving
         # it in because it's harmless and I'm slightly afraid to
         # remove it.
-        if self.cookie and magic_close:
+        if hasattr(self, 'cookie') and self.cookie and magic_close:
             magic_close(self.cookie)
             self.cookie = None
 
@@ -206,41 +205,8 @@ def from_descriptor(fd, mime=False):
     m = _get_magic_type(mime)
     return m.from_descriptor(fd)
 
-
-libmagic = None
-# Let's try to find magic or magic1
-dll = ctypes.util.find_library('magic') \
-      or ctypes.util.find_library('magic1') \
-      or ctypes.util.find_library('cygmagic-1') \
-      or ctypes.util.find_library('libmagic-1') \
-      or ctypes.util.find_library('msys-magic-1')  # for MSYS2
-
-# necessary because find_library returns None if it doesn't find the library
-if dll:
-    libmagic = ctypes.CDLL(dll)
-
-if not libmagic or not libmagic._name:
-    windows_dlls = ['magic1.dll', 'cygmagic-1.dll', 'libmagic-1.dll', 'msys-magic-1.dll']
-    platform_to_lib = {'darwin': ['/opt/local/lib/libmagic.dylib',
-                                  '/usr/local/lib/libmagic.dylib'] +
-                                 # Assumes there will only be one version installed
-                                 glob.glob('/usr/local/Cellar/libmagic/*/lib/libmagic.dylib'),  # flake8:noqa
-                       'win32': windows_dlls,
-                       'cygwin': windows_dlls,
-                       'linux': ['libmagic.so.1'],
-                       # fallback for some Linuxes (e.g. Alpine) where library search does not work # flake8:noqa
-                       }
-    platform = 'linux' if sys.platform.startswith('linux') else sys.platform
-    for dll in platform_to_lib.get(platform, []):
-        try:
-            libmagic = ctypes.CDLL(dll)
-            break
-        except OSError:
-            pass
-
-if not libmagic or not libmagic._name:
-    # It is better to raise an ImportError since we are importing magic module
-    raise ImportError('failed to find libmagic.  Check your installation')
+from . import loader
+libmagic = loader.load_lib()
 
 magic_t = ctypes.c_void_p
 
@@ -264,6 +230,7 @@ def errorcheck_negative_one(result, func, args):
 # return str on python3.  Don't want to unconditionally
 # decode because that results in unicode on python2
 def maybe_decode(s):
+    # NEXTBREAK: remove
     if str == bytes:
         return s
     else:
@@ -272,13 +239,28 @@ def maybe_decode(s):
         return s.decode('utf-8', 'backslashreplace')
 
 
+try:
+    from os import PathLike
+    def unpath(filename):
+        if isinstance(filename, PathLike):
+            return filename.__fspath__()
+        else:
+            return filename
+except ImportError:
+    def unpath(filename):
+        return filename
+
 def coerce_filename(filename):
     if filename is None:
         return None
+
+    filename = unpath(filename)
+
     # ctypes will implicitly convert unicode strings to bytes with
     # .encode('ascii').  If you use the filesystem encoding
     # then you'll get inconsistent behavior (crashes) depending on the user's
     # LANG environment variable
+    # NEXTBREAK: remove
     is_unicode = (sys.version_info[0] <= 2 and
                  isinstance(filename, unicode)) or \
                  (sys.version_info[0] >= 3 and
@@ -453,7 +435,7 @@ def _add_compat(to_module):
     def deprecation_wrapper(fn):
         def _(*args, **kwargs):
             warnings.warn(
-                "Using compatability mode with libmagic's python binding. "
+                "Using compatibility mode with libmagic's python binding. "
                 "See https://github.com/ahupp/python-magic/blob/master/COMPAT.md for details.",
                 PendingDeprecationWarning)
 

@@ -1,4 +1,4 @@
 
 version=4
-https://github.com/ahupp/@PACKAGE@/releases \
-    /ahupp/@PACKAGE@/archive/@ANY_VERSION@@ARCHIVE_EXT@
+https://github.com/ahupp/@PACKAGE@/tags \
+    /ahupp/@PACKAGE@/archive/refs/tags/@ANY_VERSION@@ARCHIVE_EXT@
