@@ -7,11 +7,12 @@ Vcs-Git: https://git.in-ulm.de/cbiedl/python-magic.git
 Testsuite: autopkgtest-pkg-python
 Build-Depends: debhelper-compat (= 13),
     dh-python,
-    libmagic1 (>= 1:5.39),
+    libmagic-dev,
     python3-all,
     python3-coverage,
     python3-pytest,
     python3-setuptools,
+    python3-wheel,
     tox,
 Priority: extra
 Rules-Requires-Root: no
@@ -20,7 +21,7 @@ Section: libs
 Package: python3-magic
 Architecture: all
 Depends: ${misc:Depends}, ${python3:Depends},
-    libmagic1 (>= 1:5.39),
+    ${magic:Depends},
 Section: python
 Priority: optional
 Description: python3 interface to the libmagic file type identification library

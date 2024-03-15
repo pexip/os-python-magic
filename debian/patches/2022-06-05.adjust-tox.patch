@@ -14,3 +14,11 @@ Forwarded: not-needed
  
  setenv =
    COVERAGE_FILE=.coverage.{envname}
+@@ -21,6 +21,7 @@
+     .[test]
+     coverage
+     pytest
++allowlist_externals = python3-coverage
+ 
+ [testenv:coverage-clean]
+ deps = coverage
