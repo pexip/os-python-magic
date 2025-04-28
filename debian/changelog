@@ -1,3 +1,22 @@
+python-magic (2:0.4.27-3) unstable; urgency=medium
+
+  * Don't hardcode dependency on libmagic1. Closes: #1066850
+
+ -- Christoph Biedl <debian.axhn@manchmal.in-ulm.de>  Fri, 15 Mar 2024 08:41:01 +0100
+
+python-magic (2:0.4.27-2) unstable; urgency=medium
+
+  * Fix test suite with file 5.45
+
+ -- Christoph Biedl <debian.axhn@manchmal.in-ulm.de>  Sat, 02 Sep 2023 15:18:53 +0200
+
+python-magic (2:0.4.27-1) unstable; urgency=medium
+
+  * New upstream version 0.4.27
+  * Fix build with tox4. Closes: #1035640
+
+ -- Christoph Biedl <debian.axhn@manchmal.in-ulm.de>  Wed, 02 Aug 2023 19:39:12 +0200
+
 python-magic (2:0.4.26-3+pexip24u3) pexip-bookworm; urgency=medium
 
   * New versioning scheme
