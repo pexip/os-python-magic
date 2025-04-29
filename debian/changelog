@@ -1,3 +1,9 @@
+python-magic (2:0.4.27-3+pexip25u1) pexip-trixie; urgency=medium
+
+  * Initial trixie build
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Tue, 29 Apr 2025 22:54:30 +0100
+
 python-magic (2:0.4.27-3) unstable; urgency=medium
 
   * Don't hardcode dependency on libmagic1. Closes: #1066850
